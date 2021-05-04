@@ -1,0 +1,12 @@
+{
+    "index_patterns": [
+        "waf-logs-*"
+    ],
+    "mappings": {
+        "properties": {
+            "timestamp": {
+                "type": "date"
+            }
+        }
+    }
+}
