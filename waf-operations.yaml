@@ -121,6 +121,17 @@ Resources:
 
   S3Bucket:
     Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'aws-waf-logs-${AWS::Partition}-${AWS::Region}-${AWS::AccountId}'
+      BucketEncryption: 
+        ServerSideEncryptionConfiguration: 
+        - ServerSideEncryptionByDefault:
+            SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration: 
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
 
   LogEnrichmentLambdaRole:
     Type: AWS::IAM::Role
