@@ -22,12 +22,12 @@ def lambda_handler(event, context):
       credentials = boto3.Session().get_credentials()
       awsauth = AWS4Auth(credentials.access_key, credentials.secret_key, region, service, session_token=credentials.token)
 
-      bucket = 'https://aws-waf-operations.s3.amazonaws.com/'
+      repo = 'https://raw.githubusercontent.com/aws-samples/aws-waf-ops-dashboards/main/'
 
       filenames = ['awswaf-es-index-template.json']
       headers={'kbn-xsrf': 'true', 'Content-Type': 'application/json'}
       for filename in filenames:
-        f = requests.get(bucket + filename).content
+        f = requests.get(repo + filename).content
         url = 'https://{}/_template/date_template?pretty'.format(host)
         r = requests.put(url, auth=awsauth, headers=headers, data=f)
         #if r.status_code != 200: 
@@ -37,7 +37,7 @@ def lambda_handler(event, context):
       filenames = ['awswaf-es-index.ndjson', 'awswaf-es-visualizations.ndjson', 'awswaf-es-dashboards.ndjson']
       headers={'kbn-xsrf': 'true'}
       for filename in filenames:
-        f = requests.get(bucket + filename).content
+        f = requests.get(repo + filename).content
         url = 'https://{}/_plugin/kibana/api/saved_objects/_import?overwrite=true'.format(host)
         r = requests.post(url, auth=awsauth, headers=headers, files={ 'file': (filename, f) })
         #if r.status_code != 200: 
