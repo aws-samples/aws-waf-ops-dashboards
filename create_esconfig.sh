@@ -19,7 +19,7 @@ source ./venv/bin/activate
 pip3 install -U requests requests-AWS4Auth cfnresponse
 cd $VIRTUAL_ENV/lib/python3.7/site-packages/
 rm -rf wheel* easy_install* setuptools* _virtualenv* pip* _distutils* pkg_resources
-wget https://raw.githubusercontent.com/aws-samples/aws-waf-ops-dashboards/b814ab96f0cea04da57a530970c9d8b8d3742972/lambda_function.py
+wget https://raw.githubusercontent.com/aws-samples/aws-waf-ops-dashboards/main/lambda_function.py
 zip -r esconfig.zip .
 aws s3 cp esconfig.zip s3://$1
 deactivate
