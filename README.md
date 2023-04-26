@@ -13,7 +13,7 @@ In this repository, we share code for building infrastructure to collect, enrich
 Following the steps below, you will create an infrastructure in your AWS account as per the diagram below, using the following AWS services:
 * Amazon Kinesis Data Firehose
 * Amazon Cognito
-* Amazon Elasticsearch Service
+* Amazon OpenSearch
 * Amazon S3
 * Amazon EventBridge
 * AWS CodeBuild
