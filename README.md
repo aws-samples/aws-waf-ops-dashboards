@@ -70,7 +70,7 @@ The Cognito screen will be displayed. Use the credentials sent to you by email:
 
 ![img](media/image9.png)
 
-When you open the dashboards, you will notice that they are missing data. To get the data to start populating, go to the AWS WAF console, and activate the logs by directing them to the Kinesis Data Firehose created through this project. Once the requests start coming in and being processed you can do a *Refresh* of the data and start your work of visualizing, analyzing and investigating the requests to your applications protected by AWS WAF:
+When you open the dashboards, you will notice that they is no data. To get the data to start populating, go to the AWS WAF console, and activate the logs by directing them to the Kinesis Data Firehose created through this project. Once the requests start coming in and being processed you can do a *Refresh* of the data and start your work of visualizing, analyzing and investigating the requests to your applications protected by AWS WAF:
 
 ![img](media/image10.png)
 
@@ -84,5 +84,6 @@ And these are the dashboards with data:
 
 ### Uninstalling
 
-To remove the solution, disable AWS WAF logging to be sent to this solution, wait some minutes for the last logs to be processed and delete the stack via the AWS CloudFormation console.
+To remove the solution, disable AWS WAF logging, wait some minutes for the last logs to be processed and delete the stack via the AWS CloudFormation console.
 WARNING: When deleted, the logs backup stored on the S3 bucket created by the solution will be deleted along with the bucket.
+Also delete de S3 bucket created through CloudShell.
