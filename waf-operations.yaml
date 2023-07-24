@@ -122,7 +122,7 @@ Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub 'aws-waf-logs-${AWS::Partition}-${AWS::Region}-${AWS::AccountId}'
+      BucketName: !Sub 'aws-waf-logs-${AWS::Partition}-${AWS::Region}-${AWS::StackName}'
       BucketEncryption: 
         ServerSideEncryptionConfiguration: 
         - ServerSideEncryptionByDefault:
@@ -260,6 +260,9 @@ Resources:
 
               print('Successfully processed {} records.'.format(len(event['records'])))
 
+              responseData = {'Message': 'Finish'}
+              cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData, "CustomResourcePhysicalID")
+
               return {'records': output}
 
   CodebuildRole:
@@ -353,7 +356,7 @@ Resources:
               commands:
                 - LAMBDA_LAYER_VERSION=`aws lambda publish-layer-version --layer-name $LAMBDA_LAYER_NAME --description "AWS WAF Logs Enrichment Tools and Database" --zip-file fileb://layer.zip --compatible-runtimes python3.7 --query 'LayerVersionArn' --output text`
                 - aws lambda update-function-configuration --function-name $LAMBDA_FUNCTION_NAME --layers $LAMBDA_LAYER_VERSION
-      TimeoutInMinutes: 15
+      TimeoutInMinutes: 8
 
   BuildEventBridgeRole:
     Type: AWS::IAM::Role
