@@ -16,7 +16,7 @@ fi
 pip3 install --user virtualenv
 virtualenv -p python3.7 venv
 source ./venv/bin/activate
-pip3 install -U requests requests-AWS4Auth cfnresponse
+pip3 install -U requests requests-AWS4Auth cfnresponse charset_normalizer
 cd $VIRTUAL_ENV/lib/python3.7/site-packages/
 rm -rf wheel* easy_install* setuptools* _virtualenv* pip* _distutils* pkg_resources
 wget https://raw.githubusercontent.com/aws-samples/aws-waf-ops-dashboards/main/lambda_function.py
