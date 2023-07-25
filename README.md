@@ -31,7 +31,7 @@ When CloudShell opens, we will run the following commands, replacing the value &
 
 ```
 aws s3 mb s3://<bucket_name>
-wget https://raw.githubusercontent.com/aws-samples/aws-waf-ops-dashboards/main/create_esconfig.sh
+wget https://raw.githubusercontent.com/aws-samples/aws-waf-ops-dashboards/main/create_esconfig.sh -O create_esconfig.sh
 chmod +x create_esconfig.sh
 ./create_esconfig.sh <bucket_name>
 ```
