@@ -260,9 +260,6 @@ Resources:
 
               print('Successfully processed {} records.'.format(len(event['records'])))
 
-              responseData = {'Message': 'Finish'}
-              cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData, "CustomResourcePhysicalID")
-
               return {'records': output}
 
   CodebuildRole:
