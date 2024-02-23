@@ -152,7 +152,7 @@ Resources:
       FunctionName: !Sub ${AWS::StackName}-log-enrichment
       Handler: index.lambda_handler
       MemorySize: 256
-      Runtime: python3.7
+      Runtime: python3.9
       Timeout: 120
       Role: !GetAtt LogEnrichmentLambdaRole.Arn
       Code:
@@ -321,24 +321,24 @@ Resources:
               commands:
                 - echo "Install Step"
                 #- yum update -y
-                - yum install -y gcc python3.7 python3-devel python3-pip python-virtualenv zip
+                - yum install -y gcc python3.9 python3-devel python3-pip python-virtualenv zip
             pre_build:
               commands:
                 - echo "Pre-build Step"
-                - PYTHON_PATH=build/python/lib/python3.7/site-packages
-                - virtualenv -p python3.7 venv
+                - PYTHON_PATH=build/python/lib/python3.9/site-packages
+                - virtualenv -p python3.9 venv
             build:
               commands:
                 - echo "Build Step"
                 - . venv/bin/activate
-                - $VIRTUAL_ENV/bin/pip3 install -U --target $VIRTUAL_ENV/lib/python3.7/site-packages pyasn
+                - $VIRTUAL_ENV/bin/pip3 install -U --target $VIRTUAL_ENV/lib/python3.9/site-packages pyasn
                 - $VIRTUAL_ENV/bin/pip3 install -U user_agents
                 - $VIRTUAL_ENV/bin/pip3 install -U counter_robots
-                - $VIRTUAL_ENV/lib/python3.7/site-packages/bin/pyasn_util_download.py --latest
+                - $VIRTUAL_ENV/lib/python3.9/site-packages/bin/pyasn_util_download.py --latest
                 - RIB_FILE=`ls rib.*`
-                - $VIRTUAL_ENV/lib/python3.7/site-packages/bin/pyasn_util_convert.py --single $RIB_FILE ipasn.dat
+                - $VIRTUAL_ENV/lib/python3.9/site-packages/bin/pyasn_util_convert.py --single $RIB_FILE ipasn.dat
                 - mkdir -p ./$PYTHON_PATH
-                - cp -a $VIRTUAL_ENV/lib/python3.7/site-packages/. ./$PYTHON_PATH
+                - cp -a $VIRTUAL_ENV/lib/python3.9/site-packages/. ./$PYTHON_PATH
                 - rm -rf ./$PYTHON_PATH/wheel*
                 - rm -rf ./$PYTHON_PATH/easy-install*
                 - rm -rf ./$PYTHON_PATH/setuptools*
@@ -351,7 +351,7 @@ Resources:
                 - zip -r layer.zip .
             post_build:
               commands:
-                - LAMBDA_LAYER_VERSION=`aws lambda publish-layer-version --layer-name $LAMBDA_LAYER_NAME --description "AWS WAF Logs Enrichment Tools and Database" --zip-file fileb://layer.zip --compatible-runtimes python3.7 --query 'LayerVersionArn' --output text`
+                - LAMBDA_LAYER_VERSION=`aws lambda publish-layer-version --layer-name $LAMBDA_LAYER_NAME --description "AWS WAF Logs Enrichment Tools and Database" --zip-file fileb://layer.zip --compatible-runtimes python3.9 --query 'LayerVersionArn' --output text`
                 - aws lambda update-function-configuration --function-name $LAMBDA_FUNCTION_NAME --layers $LAMBDA_LAYER_VERSION
       TimeoutInMinutes: 8
 
@@ -547,7 +547,7 @@ Resources:
     Properties:
       FunctionName: !Sub ${AWS::StackName}-es-config-function
       Handler: lambda_function.lambda_handler
-      Runtime: python3.7
+      Runtime: python3.9
       Timeout: 30
       Role: !GetAtt ESConfigRole.Arn
       Code:
@@ -625,7 +625,7 @@ Resources:
       FunctionName: !Sub ${AWS::StackName}-waf-operations-set-up
       Handler: index.lambda_handler
       Role: !GetAtt WAFOperationsSetUpRole.Arn
-      Runtime: python3.7
+      Runtime: python3.9
       Timeout: 180
 
   FirstInvokeWAFOperationsSetUpLambda:
