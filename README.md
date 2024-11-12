@@ -39,7 +39,7 @@ chmod +x create_esconfig.sh
 
 ![img](media/cloudshell_commands.png)
 
-After running the above commands in CloudShell, copy the `waf-operations.yaml` file from this repository to a local folder. Then open the AWS console in the *CloudFormation* service, click *Create Stack*, select *With new resources (standard)*, then in the *Template source* section select *Upload a template file*, click *Choose file* and choose the file you copied to your local folder. Finally click *Next*:
+After running the above commands in CloudShell, copy the [`waf-operations.yaml`](waf-operations.yaml) file from this repository to a local folder. Then open the AWS console in the *CloudFormation* service, click *Create Stack*, select *With new resources (standard)*, then in the *Template source* section select *Upload a template file*, click *Choose file* and choose the file you copied to your local folder. Finally click *Next*:
 
 ![img](media/image1.png)
 
