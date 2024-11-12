@@ -27,10 +27,10 @@ To do the installation, we will first need to build an AWS Lambda function, and 
 
 ![img](media/cloudshell_open.png)
 
-When CloudShell opens, we will run the following commands, replacing the value &lt;bucket_name&gt; with a unique bucket name that you choose:
+When CloudShell opens, we will run the following commands, replacing the value &lt;unique_bucket_name&gt; with a unique bucket name that you choose:
 
 ```
-bucket="enter-your-unique-bucket-name"
+bucket="unique_bucket_name"
 aws s3 mb s3://$bucket
 wget https://raw.githubusercontent.com/aws-samples/aws-waf-ops-dashboards/main/create_esconfig.sh -O create_esconfig.sh
 chmod +x create_esconfig.sh
