@@ -335,7 +335,8 @@ Resources:
                 - $VIRTUAL_ENV/bin/pip3 install -U user_agents
                 - $VIRTUAL_ENV/bin/pip3 install -U counter_robots
                 - $VIRTUAL_ENV/bin/pip3 install -U packaging
-                - $VIRTUAL_ENV/bin/pip3 install -U jaraco.classes jaraco.collections jaraco.context jaraco.functools jaraco.logging jaraco.path jaraco.text jaraco.ui jaraco.collections jaraco.itertools jaraco.stream jaraco.envs jaraco.services jaraco.logging jaraco.util jaraco.context jaraco.windows jaraco.mongodb jaraco.finance jaraco.packaging jaraco.network jaraco.structures jaraco.xml
+                - $VIRTUAL_ENV/bin/pip3 install -U jaraco.text
+                - $VIRTUAL_ENV/bin/pip3 install -U platformdirs
                 - $VIRTUAL_ENV/lib/python3.9/site-packages/bin/pyasn_util_download.py --latest
                 - RIB_FILE=`ls rib.*`
                 - $VIRTUAL_ENV/lib/python3.9/site-packages/bin/pyasn_util_convert.py --single $RIB_FILE ipasn.dat
