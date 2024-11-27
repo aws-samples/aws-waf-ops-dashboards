@@ -30,10 +30,11 @@ Para fazer a instalação, inicialmente precisaremos construir uma função AWS 
 Quando o CloudShell abrir, iremos executar os comandos a seguir, substituindo o valor &lt;bucket_name&gt; por um nome de bucket único que você escolher:
 
 ```
-aws s3 mb s3://<bucket_name>
-wget https://raw.githubusercontent.com/aws-samples/aws-waf-ops-dashboards/main/create_esconfig.sh
+bucket="unique_bucket_name"
+aws s3 mb s3://$bucket
+wget https://raw.githubusercontent.com/aws-samples/aws-waf-ops-dashboards/main/create_esconfig.sh -O create_esconfig.sh
 chmod +x create_esconfig.sh
-./create_esconfig.sh <bucket_name>
+./create_esconfig.sh $bucket
 ```
 
 ![img](media/cloudshell_commands.png)
